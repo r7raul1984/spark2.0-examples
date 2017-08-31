@@ -17,13 +17,11 @@ object JobTest {
 
     input.map{f=>
       Thread.sleep(5000)
-      println("input" + f)
       f
     }.foreachRDD(f=>f.count())
 
     input2.map{f=>
       Thread.sleep(5000)
-      println("input2" + f)
       f
     }.foreachRDD(f=>f.count())
 
