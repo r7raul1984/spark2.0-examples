@@ -13,6 +13,7 @@ object RddCache {
     val indCache  = rdd.mapValues(_ > 4)
     indCache.count
     indCache.cache()
+    //indCache.persist(StorageLevel.DISK_ONLY_2)
     println(indCache.toDebugString)
     // (8) MapPartitionsRDD[13] at mapValues at <console>:24 [Disk Serialized 1x Replicated]
     //  |  ShuffledRDD[3] at reduceByKey at <console>:21 [Disk Serialized 1x Replicated]
