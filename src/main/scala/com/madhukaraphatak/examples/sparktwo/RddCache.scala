@@ -1,5 +1,5 @@
 package com.madhukaraphatak.examples.sparktwo
-
+//https://stackoverflow.com/questions/35127720/what-is-the-difference-between-spark-checkpoint-and-persist-to-a-disk
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.storage.StorageLevel
 
@@ -8,12 +8,17 @@ object RddCache {
     val conf = new SparkConf()
     conf.setAppName("test")
     conf.setMaster("local[4]")
+    conf.set("spark.ui.port","2029")
     val sc = new SparkContext(conf)
+    sc.setCheckpointDir("D:\\check")
     val rdd = sc.parallelize(1 to 10).map(x => (x % 3, 1)).reduceByKey(_ + _,2)
     val indCache  = rdd.mapValues(_ > 4)
+    //indCache.checkpoint
     indCache.count
+   //indCache.persist(StorageLevel.DISK_ONLY_2)
     indCache.cache()
-    //indCache.persist(StorageLevel.DISK_ONLY_2)
+
+     // shuffle_0_0_0.data shuffle_0_3_0.index  C:\Users\tangjijun\AppData\Local\Temp\blockmgr-bb3a6ddf-5351-4dc5-b8be-24e938ff3ef5\0f
     println(indCache.toDebugString)
     // (8) MapPartitionsRDD[13] at mapValues at <console>:24 [Disk Serialized 1x Replicated]
     //  |  ShuffledRDD[3] at reduceByKey at <console>:21 [Disk Serialized 1x Replicated]
