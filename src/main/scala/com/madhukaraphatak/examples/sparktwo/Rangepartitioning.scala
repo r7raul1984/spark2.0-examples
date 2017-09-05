@@ -3,6 +3,7 @@ package com.madhukaraphatak.examples.sparktwo
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.sql.Row
 //https://issues.apache.org/jira/browse/SPARK-17788
+//https://issues.apache.org/jira/browse/SPARK-9862  Join: Handling data skew
 object Rangepartitioning {
   def main(args: Array[String]): Unit = {
 
