@@ -4,6 +4,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.{Row, SparkSession}
 //https://issues.apache.org/jira/browse/SPARK-17788
 //https://issues.apache.org/jira/browse/SPARK-9862  Join: Handling data skew
+//http://www.jasongj.com/spark/skew/
 object Rangepartitioning {
   def main(args: Array[String]): Unit = {
 
